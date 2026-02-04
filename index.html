@@ -8,7 +8,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -26,8 +26,8 @@
       --shadow: 0 16px 40px rgba(17, 41, 33, .12);
       --shadow-soft: 0 10px 24px rgba(17, 41, 33, .10);
 
-      --radius: 18px;
-      --radius-lg: 26px;
+      --radius: 8px;
+      --radius-lg: 12px;
 
       --container: 1100px;
       --navH: 72px;
@@ -63,7 +63,7 @@
       justify-content:center;
       gap:10px;
       padding:14px 18px;
-      border-radius:14px;
+      border-radius:10px;
       border:1px solid rgba(23,48,42,.12);
       background: #fff;
       box-shadow: 0 10px 20px rgba(17, 41, 33, .10);
@@ -89,6 +89,15 @@
       box-shadow: 0 22px 40px rgba(31,111,101,.28);
       border-color: rgba(255,255,255,.26);
       background: linear-gradient(180deg, rgba(42,157,143,1), rgba(25,96,86,1));
+    }
+    .btn-accent{
+      background: var(--orange);
+      color: #fff;
+      border-color: rgba(244,162,97,.55);
+    }
+    .btn-accent:hover{
+      background: #f09855;
+      border-color: rgba(244,162,97,.7);
     }
 
     /* Header / Nav */
@@ -116,16 +125,16 @@
       letter-spacing: -.02em;
     }
     .tree-icon{
-      width:42px;height:42px;border-radius:14px;
-      background: rgba(42,157,143,.12);
-      border: 1px solid rgba(23,48,42,.10);
-      box-shadow: 0 12px 22px rgba(17,41,33,.10);
+      width:42px;height:42px;border-radius:0;
+      background: transparent;
+      border: none;
+      box-shadow: none;
       display:flex;
       align-items:center;
       justify-content:center;
       flex: 0 0 auto;
     }
-    .tree-icon svg{ width:22px; height:22px; }
+    .tree-icon svg{ width:26px; height:26px; }
 
     #menuToggle{display:none}
     .nav-links{
@@ -134,6 +143,12 @@
       gap:10px;
       font-weight: 800;
       color: rgba(23,48,42,.86);
+    }
+    .nav-links .nav-cta{
+      margin-left: 6px;
+      padding: 10px 14px;
+      font-size: 13px;
+      border-radius: 10px;
     }
     .nav-links a{
       padding:10px 10px;
@@ -184,9 +199,10 @@
     .section-base{  background: transparent; }
 
     .section-title{
-      font-size: clamp(24px, 2.2vw, 34px);
+      font-size: clamp(30px, 3vw, 46px);
       margin: 0 0 12px;
       letter-spacing: -.02em;
+      font-weight: 500;
     }
     .section-subtitle{
       margin:0 0 28px;
@@ -194,14 +210,22 @@
       font-size: 16px;
       max-width: 72ch;
     }
+    .section-note{
+      margin: -14px 0 22px;
+      font-size: 13px;
+      color: rgba(23,48,42,.65);
+      font-weight: 700;
+    }
 
     /* Hero */
     .hero{
       padding: 46px 0 70px;
       background:
-        linear-gradient(0deg, rgba(0,0,0,.60), rgba(0,0,0,.60)),
-        url("https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1600&q=75") center/cover no-repeat;
+        linear-gradient(0deg, rgba(0,0,0,.42), rgba(0,0,0,.42)),
+        url("bg1.jpg") center/cover no-repeat;
+      background-attachment: fixed;
       color: rgba(255,255,255,.92);
+      animation: heroBgDrift 18s ease-in-out infinite;
     }
     .hero-grid{
       display:grid;
@@ -209,11 +233,19 @@
       gap: 28px;
       align-items: center;
     }
+    .hero h1,
+    .hero p,
+    .hero-actions{
+      animation: heroFadeUp 900ms var(--ease) both;
+    }
+    .hero p{ animation-delay: 120ms; }
+    .hero-actions{ animation-delay: 220ms; }
     .hero h1{
       font-size: clamp(32px, 4vw, 54px);
       line-height: 1.05;
       margin: 0 0 14px;
       letter-spacing: -.04em;
+      font-weight: 500;
     }
     .hero p{
       margin:0 0 18px;
@@ -233,23 +265,42 @@
       align-items:center;
       gap:10px;
       padding: 12px 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.18);
-      background: rgba(255,255,255,.08);
+      border-radius: 0;
+      border: none;
+      background: transparent;
       color: rgba(255,255,255,.92);
       font-weight: 900;
+      font-size: 24px;
       letter-spacing: -.01em;
       transition: transform var(--t) var(--ease), background var(--t) var(--ease);
       white-space: nowrap;
     }
-    .hero-phone:hover{ transform: translateY(-1px); background: rgba(255,255,255,.12); }
+    .hero-phone:hover{ transform: translateY(-1px); background: transparent; }
     .hero-phone svg{ width:18px; height:18px; fill: rgba(255,255,255,.92); }
+    .hero-socials{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+    }
+    .hero-socials a{
+      width:36px;
+      height:36px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      transition: transform var(--t) var(--ease), background var(--t) var(--ease);
+    }
+    .hero-socials a:hover{ transform: translateY(-1px); background: rgba(255,255,255,.14); }
+    .hero-socials svg{ width:18px; height:18px; fill: rgba(255,255,255,.92); }
 
     .hero-card{
       border-radius: var(--radius-lg);
-      background: rgba(255,255,255,.10);
-      border: 1px solid rgba(255,255,255,.18);
-      box-shadow: 0 22px 50px rgba(0,0,0,.22);
+      background: rgba(255,255,255,.68);
+      border: 1px solid rgba(255,255,255,.62);
+      box-shadow: 0 22px 50px rgba(0,0,0,.08);
       overflow:hidden;
       position: relative;
       min-height: 420px;
@@ -257,33 +308,29 @@
     .hero-visual{
       position:absolute; inset:0;
       display:flex; align-items:flex-end; justify-content:center;
-      padding: 22px;
+      padding: 10px;
     }
     .hero-visual .mock{
       width: 100%;
-      border-radius: 22px;
+      border-radius: var(--radius-lg);
       overflow:hidden;
       border: 1px solid rgba(255,255,255,.18);
       box-shadow: 0 18px 40px rgba(0,0,0,.28);
       background:
         linear-gradient(180deg, rgba(0,0,0,.0), rgba(0,0,0,.45)),
-        url("https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=75") center/cover no-repeat;
+        url("raz5.jpg") center/cover no-repeat;
       height: 100%;
       min-height: 380px;
       position:relative;
     }
-    .hero-visual .mock:after{
-      content:"Литая туя — реализм и стиль круглый год";
-      position:absolute;
-      left:14px; right:14px; bottom:14px;
-      padding: 12px 14px;
-      border-radius: 16px;
-      color: rgba(255,255,255,.94);
-      background: rgba(0,0,0,.35);
-      border: 1px solid rgba(255,255,255,.18);
-      backdrop-filter: blur(10px);
-      font-weight: 900;
-      letter-spacing: -.01em;
+
+    @keyframes heroFadeUp{
+      from{ opacity: 0; transform: translateY(10px); }
+      to{ opacity: 1; transform: translateY(0); }
+    }
+    @keyframes heroBgDrift{
+      0%,100%{ background-position: 50% 50%; }
+      50%{ background-position: 52% 48%; }
     }
 
     /* Advantages */
@@ -339,7 +386,7 @@
     /* Catalog */
     .catalog-grid{
       display:grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 16px;
       margin-top: 24px;
     }
@@ -359,11 +406,16 @@
       box-shadow: var(--shadow);
       border-color: rgba(42,157,143,.22);
     }
-    .product-media{ height: 220px; overflow:hidden; }
+    .product-media{
+      height: 480px;
+      aspect-ratio: 3 / 4;
+      overflow:hidden;
+    }
     .product-media img{
       width:100%;
       height:100%;
-      object-fit:cover;
+      object-fit: cover;
+      object-position: center;
       transform: scale(1.02);
       transition: transform 380ms var(--ease);
     }
@@ -389,6 +441,108 @@
       font-weight:700;
       font-size: 14px;
     }
+    .product .meta .btn{
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 800;
+      border-radius: 8px;
+      box-shadow: 0 8px 16px rgba(17, 41, 33, .10);
+      background: var(--orange);
+      color: #fff;
+      border-color: rgba(244,162,97,.55);
+    }
+    .product .meta .btn:hover{
+      background: #f09855;
+      border-color: rgba(244,162,97,.7);
+    }
+    .product .price{
+      font-size: 16px;
+      font-weight: 900;
+      color: var(--green-dark);
+      letter-spacing: -.01em;
+      white-space: nowrap;
+    }
+    /* Modal */
+    .modal{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 100;
+    }
+    .modal.is-open{ display: flex; }
+    .modal-card{
+      width: min(980px, 100%);
+      background: #fff;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(23,48,42,.12);
+      box-shadow: var(--shadow);
+      overflow: visible;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+    }
+    .modal-media{
+      background: #f7f1e6;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 20px;
+    }
+    .modal-media img{ max-width: 100%; max-height: 420px; object-fit: contain; }
+    .modal-body{
+      padding: 22px;
+      display:flex;
+      flex-direction:column;
+      gap: 14px;
+    }
+    .modal-title{ margin:0; font-size: 22px; letter-spacing:-.02em; }
+    .modal-close{
+      position:absolute;
+      top: 16px;
+      right: 16px;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      border: 1px solid rgba(23,48,42,.12);
+      background: #fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      z-index: 2;
+    }
+    .modal-body{ position: relative; z-index: 1; }
+    .calc{
+      display:grid;
+      gap: 10px;
+    }
+    .calc-row{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .calc input,
+    .calc select{
+      width:100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(23,48,42,.12);
+      font-size: 14px;
+      position: relative;
+      z-index: 1;
+    }
+    .calc-total{
+      font-weight: 900;
+      color: var(--green-dark);
+    }
+    @media (max-width: 760px){
+      .modal-card{ grid-template-columns: 1fr; }
+      .modal-media img{ max-height: 320px; }
+    }
     .center-actions{
       margin-top: 20px;
       display:flex;
@@ -399,11 +553,11 @@
 
     /* ===== Specs: добавлены тематические иконки ===== */
     .specs{
-      border-radius: var(--radius-lg);
-      background: rgba(255,255,255,.92);
-      border: 1px solid rgba(23,48,42,.10);
-      box-shadow: var(--shadow-soft);
-      padding: 22px;
+      border-radius: 0;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      padding: 0;
     }
     .spec-grid{
       display:grid;
@@ -429,28 +583,102 @@
       margin-bottom: 8px;
     }
     .spec-icon{
-      width: 46px;
-      height: 46px;
-      border-radius: 16px;
-      background: rgba(42,157,143,.12);
-      border: 1px solid rgba(23,48,42,.10);
-      box-shadow: 0 12px 22px rgba(17,41,33,.08);
+      width: 40px;
+      height: 40px;
+      border-radius: 0;
+      background: transparent;
+      border: none;
+      box-shadow: none;
       display:flex;
       align-items:center;
       justify-content:center;
       flex: 0 0 auto;
     }
     .spec-icon svg{
-      width: 22px;
-      height: 22px;
+      width: 28px;
+      height: 28px;
       stroke: rgba(31,111,101,1);
       fill: none;
-      stroke-width: 1.8;
+      stroke-width: 1.6;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
     .spec h5{margin:0; font-size: 14px}
     .spec p{margin:0; color: var(--muted); font-size: 13px}
+
+    /* Consultation */
+    .consultation{
+      display:grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    .consult-media{
+      border-radius: var(--radius-lg);
+      overflow:hidden;
+      border: 1px solid rgba(23,48,42,.10);
+      box-shadow: var(--shadow-soft);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.0), rgba(0,0,0,.35)),
+        url("zakaz.jpg") center/cover no-repeat;
+      min-height: 260px;
+    }
+    .consult-card{
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,.92);
+      border: 1px solid rgba(23,48,42,.10);
+      box-shadow: var(--shadow-soft);
+      padding: 22px;
+    }
+    .consult-form{
+      display:grid;
+      gap: 10px;
+    }
+    .form-status{
+      display:none;
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .form-status.success{
+      background: rgba(42,157,143,.12);
+      border: 1px solid rgba(42,157,143,.35);
+      color: var(--green-dark);
+    }
+    .form-status.error{
+      background: rgba(244,162,97,.14);
+      border: 1px solid rgba(244,162,97,.45);
+      color: #9a4c1a;
+    }
+    .btn.loading{
+      pointer-events: none;
+      opacity: .75;
+    }
+    .btn.loading:after{
+      content:"";
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,.7);
+      border-top-color: transparent;
+      margin-left: 8px;
+      display:inline-block;
+      animation: spin 800ms linear infinite;
+    }
+    @keyframes spin{ to{ transform: rotate(360deg); } }
+    .consult-form input{
+      width:100%;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(23,48,42,.12);
+      background: #fff;
+      font-size: 14px;
+    }
+    .consult-form .btn{
+      width:100%;
+      justify-content:center;
+    }
 
     /* Reviews */
     .reviews-grid{
@@ -459,6 +687,64 @@
       gap: 16px;
       margin-top: 24px;
     }
+    .reviews-bg{
+      background:
+        linear-gradient(0deg, rgba(24,40,34,.55), rgba(24,40,34,.55)),
+        url("bg2.jpg") center/cover no-repeat;
+      background-attachment: fixed;
+      animation: heroBgDrift 22s ease-in-out infinite;
+    }
+    .reviews-bg .section-title,
+    .reviews-bg .section-subtitle{
+      color: rgba(255,255,255,.92);
+    }
+    /* Workflow */
+    .workflow-grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .workflow-card{
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,.92);
+      border: 1px solid rgba(23,48,42,.10);
+      box-shadow: var(--shadow-soft);
+      padding: 18px;
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      min-height: 220px;
+      transition: transform var(--t) var(--ease), box-shadow var(--t) var(--ease);
+    }
+    .workflow-card:hover{ transform: translateY(-4px); box-shadow: var(--shadow); }
+    .workflow-top{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+    }
+    .workflow-icon{
+      width: 40px;
+      height: 40px;
+      border-radius: 0;
+      background: transparent;
+      border: none;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex: 0 0 auto;
+    }
+    .workflow-icon svg{
+      width: 26px;
+      height: 26px;
+      stroke: rgba(31,111,101,1);
+      fill: none;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .workflow-card h3{ margin:0; font-size: 16px; letter-spacing:-.02em; }
+    .workflow-card p{ margin:0; color: var(--muted); font-size: 14px; }
     .review{
       border-radius: var(--radius-lg);
       background: rgba(255,255,255,.92);
@@ -506,7 +792,7 @@
       box-shadow: var(--shadow-soft);
       background:
         linear-gradient(180deg, rgba(0,0,0,.0), rgba(0,0,0,.35)),
-        url("https://images.unsplash.com/photo-1487014679447-9f8336841d58?auto=format&fit=crop&w=1200&q=75") center/cover no-repeat;
+        url("yoksel-zok-IxG3LZ1UvM0-unsplash.jpg") center/cover no-repeat;
       min-height: 320px;
     }
 
@@ -568,15 +854,18 @@
     /* Responsive */
     @media (max-width: 1080px){
       .benefits-grid{ grid-template-columns: 1fr 1fr; }
+      .catalog-grid{ grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 980px){
       .hero-grid{grid-template-columns: 1fr; }
       .hero-card{min-height: 380px}
-      .catalog-grid{grid-template-columns: 1fr; }
+      .catalog-grid{grid-template-columns: repeat(2, 1fr); }
       .spec-grid{grid-template-columns: 1fr 1fr;}
       .about-grid{grid-template-columns: 1fr;}
       .contact-grid{grid-template-columns: 1fr;}
       .reviews-grid{grid-template-columns: 1fr;}
+      .workflow-grid{grid-template-columns: 1fr;}
+      .consultation{grid-template-columns: 1fr;}
     }
     @media (max-width: 760px){
       .nav-links{
@@ -595,12 +884,19 @@
         gap: 6px;
       }
       .nav-links a{padding: 12px 12px}
+      .nav-links .nav-cta{margin-left: 0;}
       .burger{display:flex}
       #menuToggle:checked ~ .nav-links{display:flex}
       .kv{grid-template-columns: 1fr; }
       section{padding: 68px 0}
       .benefits-grid{ grid-template-columns: 1fr; }
       .spec-grid{grid-template-columns: 1fr;}
+      .catalog-grid{grid-template-columns: 1fr; }
+      .hero-phone{font-size: 18px;}
+      .product-media{height: 380px;}
+      .hero-card{min-height: 340px;}
+      .hero{background-attachment: scroll;}
+      .reviews-bg{background-attachment: scroll;}
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -617,9 +913,11 @@
     <a class="brand" href="#top" aria-label="На главную">
       <span class="tree-icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none">
-          <path d="M12 2c2.8 2.8 5 6.6 5 9.6A5 5 0 1 1 7 11.6C7 8.6 9.2 4.8 12 2Z" stroke="rgba(31,111,101,1)" stroke-width="1.7" />
-          <path d="M10 21h4" stroke="rgba(141,110,99,1)" stroke-width="1.7" stroke-linecap="round"/>
-          <path d="M12 14v7" stroke="rgba(141,110,99,1)" stroke-width="1.7" stroke-linecap="round"/>
+          <path d="M12 2c3.5 3.2 6 7.4 6 11.2A6 6 0 1 1 6 13.2C6 9.4 8.5 5.2 12 2Z" stroke="rgba(31,111,101,1)" stroke-width="1.6" />
+          <path d="M8.5 12.5c2.2-1.5 5.3-1.5 7.4 0" stroke="rgba(31,111,101,1)" stroke-width="1.4" />
+          <path d="M9.5 16.5c1.8-1 3.8-1 5.6 0" stroke="rgba(31,111,101,1)" stroke-width="1.4" />
+          <path d="M10 21h4" stroke="rgba(141,110,99,1)" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M12 14v7" stroke="rgba(141,110,99,1)" stroke-width="1.6" stroke-linecap="round"/>
         </svg>
       </span>
       <span>Литые туи</span>
@@ -646,21 +944,36 @@
       <div>
         <h1>Выберите литую тую —<br>уют дома и стиль сада без хлопот</h1>
         <p>
-          Литые веточки выглядят как живые, а уход — минимальный.
-          Украсьте интерьер или участок “вечнозелёным” акцентом, который радует круглый год.
+          Литые веточки идеальны, а уход — минимальный.<br>
+          Украсьте интерьер или сад “вечнозелёным” акцентом!
         </p>
 
         <div class="hero-actions">
-          <a class="btn btn-primary" href="https://example.com/catalog" target="_blank" rel="noopener">
+          <a class="btn btn-primary" href="#catalog">
             В каталог для выбора дерева →
           </a>
 
-          <a class="hero-phone" href="tel:+70000000000" aria-label="Позвонить">
+          <a class="btn btn-accent" href="#consultation">Получить подбор</a>
+
+          <a class="hero-phone" href="tel:+79219999999" aria-label="Позвонить">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M21 16.5v3a2 2 0 0 1-2.2 2C9.6 20.9 3.1 14.4 2.5 5.2A2 2 0 0 1 4.5 3h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .6 2.9a2 2 0 0 1-.5 2.1L8.7 11c1.3 2.6 3.7 5 6.3 6.3l1.3-1.9a2 2 0 0 1 2.1-.5c.9.3 1.9.5 2.9.6A2 2 0 0 1 21 16.5Z"/>
             </svg>
-            +7 (000) 000-00-00
+            +7 (921) 999-99-99
           </a>
+
+          <div class="hero-socials" aria-label="Социальные сети">
+            <a href="https://vk.com" target="_blank" rel="noopener" aria-label="ВКонтакте">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4.6 6.5h2.8c.3 0 .5.2.6.4.7 1.4 1.5 2.8 2.4 4 .4.5.7.7 1 .7.2 0 .3-.2.3-.7V8.1c0-.5.2-.8.7-.8h2.2c.4 0 .6.2.6.6v4.1c0 .4.1.5.3.5.2 0 .5-.2.9-.6 1.2-1.3 2.1-2.9 2.7-4.6.1-.3.3-.5.7-.5h2.7c.5 0 .7.3.6.7-.4 1.5-1.2 3-2.4 4.5-.5.6-.6.9 0 1.5 1.1 1.1 2.1 2.3 2.9 3.6.2.4 0 .8-.5.8h-2.8c-.3 0-.6-.1-.8-.4-.7-1-1.5-2-2.4-2.9-.3-.3-.5-.4-.7-.4-.2 0-.3.2-.3.6v2.6c0 .4-.2.6-.6.6h-1.3c-2.1 0-4-1-5.7-2.9-1.7-2-3.1-4.3-4-7-.1-.5.1-.7.6-.7Z"/>
+              </svg>
+            </a>
+            <a href="https://t.me" target="_blank" rel="noopener" aria-label="Телеграм">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20.9 4.4 3.9 10.9c-1 .4-1 1.3-.2 1.6l4.4 1.4 1.7 5.2c.2.6.4.7.8.7.5 0 .7-.2 1-.5l2.4-2.3 4.9 3.6c.9.5 1.5.2 1.7-.8l2.9-13.8c.3-1.2-.4-1.7-1.6-1.2Zm-4.2 4.6-7.6 6.8-.3 3.1-1.7-5.3 11.5-5.4-1.9 0Z"/>
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
 
@@ -683,7 +996,7 @@
       <div class="benefits-grid">
         <article class="benefit">
           <div class="benefit-media">
-            <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=75"
+            <img src="raz7.jpg"
                  alt="Туя в интерьере, уютная обстановка" loading="lazy">
           </div>
           <div class="benefit-body">
@@ -694,7 +1007,7 @@
 
         <article class="benefit">
           <div class="benefit-media">
-            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=75"
+            <img src="raz4.jpg"
                  alt="Всесезонный сад, зелёные растения" loading="lazy">
           </div>
           <div class="benefit-body">
@@ -705,7 +1018,7 @@
 
         <article class="benefit">
           <div class="benefit-media">
-            <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1200&q=75"
+            <img src="raz1.jpg"
                  alt="Планирование и экономия времени" loading="lazy">
           </div>
           <div class="benefit-body">
@@ -716,7 +1029,7 @@
 
         <article class="benefit">
           <div class="benefit-media">
-            <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=75"
+            <img src="yoksel-zok-nOQvJrXJZYE-unsplash.jpg"
                  alt="Реалистичная декоративная зелень" loading="lazy">
           </div>
           <div class="benefit-body">
@@ -727,7 +1040,7 @@
 
         <article class="benefit">
           <div class="benefit-media">
-            <img src="https://images.unsplash.com/photo-1542736667-069246bdbc74?auto=format&fit=crop&w=1200&q=75"
+            <img src="raz6.jpg"
                  alt="Безопасность и уют дома" loading="lazy">
           </div>
           <div class="benefit-body">
@@ -738,7 +1051,7 @@
 
         <article class="benefit">
           <div class="benefit-media">
-            <img src="https://images.unsplash.com/photo-1493666438817-866a91353ca9?auto=format&fit=crop&w=1200&q=75"
+            <img src="raz2.jpg"
                  alt="Большой выбор декора и форм" loading="lazy">
           </div>
           <div class="benefit-body">
@@ -755,47 +1068,58 @@
     <div class="container">
       <h2 class="section-title">Каталог</h2>
       <p class="section-subtitle">
-        Три популярные формы для разных задач — от минималистичного интерьера до парадного входа.
+        Литые туи разной формы для любого декора — от минималистичного интерьера до парадного входа.
       </p>
+      <p class="section-note">Стоимость зависит от высоты и типа крепления.</p>
 
       <div class="catalog-grid">
         <article class="product">
           <div class="product-media">
-            <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=75" alt="Туя в форме шара" loading="lazy">
+            <img src="tuya-shar.jpg" alt="Туя в форме шара" loading="lazy">
           </div>
           <div class="product-body">
             <h4>Туя “Шар”</h4>
             <p>Компактный акцент для интерьера и небольших зон у входа.</p>
-            <div class="meta"><span>Интерьер</span><span>Компакт</span></div>
+            <div class="meta"><a class="btn open-modal" href="#" data-title="Туя “Шар”" data-image="tuya-shar.jpg" data-prices="40:3140,70:7974">Заказать</a><span class="price">от 3 140 ₽</span></div>
           </div>
         </article>
 
         <article class="product">
           <div class="product-media">
-            <img src="https://images.unsplash.com/photo-1493666438817-866a91353ca9?auto=format&fit=crop&w=1200&q=75" alt="Туя шар на ножке" loading="lazy">
+            <img src="tuya-shar-nozhka.jpg" alt="Туя шар на ножке" loading="lazy">
           </div>
           <div class="product-body">
             <h4>Туя “Шар на ножке”</h4>
             <p>Топиарная форма для входных групп, террас и фотозон.</p>
-            <div class="meta"><span>Вход</span><span>Топиари</span></div>
+            <div class="meta"><a class="btn open-modal" href="#" data-title="Туя “Шар на ножке”" data-image="tuya-shar-nozhka.jpg" data-prices="80:4395,115:15257">Заказать</a><span class="price">от 4 395 ₽</span></div>
           </div>
         </article>
 
         <article class="product">
           <div class="product-media">
-            <img src="https://images.unsplash.com/photo-1471879832106-c7ab9e0cee23?auto=format&fit=crop&w=1200&q=75" alt="Классическая удлиненная туя" loading="lazy">
+            <img src="tuya-classika.jpg" alt="Классическая удлиненная туя" loading="lazy">
           </div>
           <div class="product-body">
             <h4>Туя “Классическая”</h4>
             <p>Удлинённая форма для оформления дорожек и крупного декора.</p>
-            <div class="meta"><span>Сад</span><span>Классика</span></div>
+            <div class="meta"><a class="btn open-modal" href="#" data-title="Туя “Классическая”" data-image="tuya-classika.jpg" data-prices="60:4456,90:7447,180:35120,210:41990">Заказать</a><span class="price">от 4 456 ₽</span></div>
+          </div>
+        </article>
+
+        <article class="product">
+          <div class="product-media">
+            <img src="tuya-3-shara.jpg" alt="Туя с тремя шарами" loading="lazy">
+          </div>
+          <div class="product-body">
+            <h4>Туя “Три шара”</h4>
+            <p>Эффектная каскадная форма для входных групп, ресторанов и фотозон.</p>
+            <div class="meta"><a class="btn open-modal" href="#" data-title="Туя “Три шара”" data-image="tuya-3-shara.jpg" data-prices="210:21766">Заказать</a><span class="price">от 21 766 ₽</span></div>
           </div>
         </article>
       </div>
 
       <div class="center-actions">
         <a class="btn btn-primary" href="https://example.com/catalog" target="_blank" rel="noopener">Открыть полный каталог →</a>
-        <a class="btn" href="tel:+70000000000">Позвонить для подбора</a>
       </div>
     </div>
   </section>
@@ -804,18 +1128,25 @@
   <section id="specs" class="section-light">
     <div class="container">
       <h2 class="section-title">Характеристики</h2>
-      <p class="section-subtitle">Реализм, устойчивость и удобство установки — чтобы туя выглядела достойно и служила долго.</p>
+      <p class="section-subtitle">Выразительная фактура, устойчивость к погоде и продуманная конструкция — чтобы туя выглядела безупречно и радовала годами.</p>
 
       <div class="specs">
         <div class="spec-grid">
           <div class="spec">
             <div class="spec-top">
               <div class="spec-icon" aria-hidden="true">
-                <!-- Иконка "линейка/размер" -->
+                <!-- Иконка "линейка" -->
                 <svg viewBox="0 0 24 24">
-                  <path d="M4 20h16"/>
-                  <path d="M6 20V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14"/>
-                  <path d="M9 8h2M9 11h2M9 14h2M9 17h2"/>
+                  <path d="M3 7h18"/>
+                  <path d="M3 17h18"/>
+                  <path d="M6 7v4"/>
+                  <path d="M9 7v2"/>
+                  <path d="M12 7v4"/>
+                  <path d="M15 7v2"/>
+                  <path d="M18 7v4"/>
+                  <path d="M6 17v-4"/>
+                  <path d="M12 17v-4"/>
+                  <path d="M18 17v-4"/>
                 </svg>
               </div>
               <h5>Размер</h5>
@@ -826,10 +1157,17 @@
           <div class="spec">
             <div class="spec-top">
               <div class="spec-icon" aria-hidden="true">
-                <!-- Иконка "термометр" -->
+                <!-- Иконка "термометр/солнце" -->
                 <svg viewBox="0 0 24 24">
-                  <path d="M14 14.8V5a2 2 0 0 0-4 0v9.8a4 4 0 1 0 4 0Z"/>
-                  <path d="M12 6v9"/>
+                  <path d="M12 4v3"/>
+                  <path d="M12 17v3"/>
+                  <path d="M4 12h3"/>
+                  <path d="M17 12h3"/>
+                  <path d="M6.2 6.2l2.1 2.1"/>
+                  <path d="M15.7 15.7l2.1 2.1"/>
+                  <path d="M6.2 17.8l2.1-2.1"/>
+                  <path d="M15.7 8.3l2.1-2.1"/>
+                  <circle cx="12" cy="12" r="3.5"/>
                 </svg>
               </div>
               <h5>Температура</h5>
@@ -840,10 +1178,15 @@
           <div class="spec">
             <div class="spec-top">
               <div class="spec-icon" aria-hidden="true">
-                <!-- Иконка "лист/хвоя" -->
+                <!-- Иконка "хвоя/ветка" -->
                 <svg viewBox="0 0 24 24">
-                  <path d="M20 4c-8 1-13 6-14 14 8-1 13-6 14-14Z"/>
-                  <path d="M6 18c3-4 7-7 14-14"/>
+                  <path d="M4 20c6-2 10-6 12-12"/>
+                  <path d="M8 18l-2 2"/>
+                  <path d="M10 15l-3 1"/>
+                  <path d="M12 12l-3-1"/>
+                  <path d="M15 9l-3-1"/>
+                  <path d="M18 6l-3 0"/>
+                  <path d="M18 6c-2 6-6 10-12 12"/>
                 </svg>
               </div>
               <h5>Литые ветки</h5>
@@ -854,12 +1197,14 @@
           <div class="spec">
             <div class="spec-top">
               <div class="spec-icon" aria-hidden="true">
-                <!-- Иконка "крепление/опора" -->
+                <!-- Иконка "опора/крепёж" -->
                 <svg viewBox="0 0 24 24">
-                  <path d="M12 3v12"/>
-                  <path d="M8 9l4-4 4 4"/>
-                  <path d="M6 21h12"/>
-                  <path d="M8 21l2-6h4l2 6"/>
+                  <path d="M12 3v8"/>
+                  <path d="M9 6l3-3 3 3"/>
+                  <path d="M5 21h14"/>
+                  <path d="M8 21l2-5h4l2 5"/>
+                  <path d="M7 11h10"/>
+                  <path d="M9 13h6"/>
                 </svg>
               </div>
               <h5>Удобные ножки</h5>
@@ -871,8 +1216,29 @@
     </div>
   </section>
 
+  <!-- CONSULTATION -->
+  <section id="consultation" class="section-dark">
+    <div class="container">
+      <h2 class="section-title">Заказать консультацию</h2>
+      <p class="section-subtitle">Наши менеджеры подберут идеальную литую тую под ваш интерьер: учтём высоту, форму и стиль, покажем варианты из наличия и быстро сориентируем по цене.</p>
+      <div class="consultation">
+        <div class="consult-media" aria-label="Подбор туи"></div>
+        <div class="consult-card">
+          <form class="consult-form" id="consultForm" novalidate>
+            <input type="text" name="name" placeholder="Ваше имя" autocomplete="name" required>
+            <input type="tel" name="phone" placeholder="Телефон" autocomplete="tel" required>
+            <input type="email" name="email" placeholder="Email" autocomplete="email" required>
+            <div class="form-status success" role="status">Заявка отправлена! Мы свяжемся с вами в ближайшее время.</div>
+            <div class="form-status error" role="alert">Не удалось отправить заявку. Проверьте данные и попробуйте ещё раз.</div>
+            <button class="btn btn-accent" type="submit">Заказать</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- REVIEWS -->
-  <section id="reviews" class="section-dark">
+  <section id="reviews" class="section-dark reviews-bg">
     <div class="container">
       <h2 class="section-title">Отзывы</h2>
       <p class="section-subtitle">Коротко — что клиенты ценят больше всего.</p>
@@ -923,20 +1289,134 @@
     </div>
   </section>
 
+  <script>
+    (function(){
+      const form = document.getElementById('consultForm');
+      if (!form) return;
+      const phoneInput = form.querySelector('input[name="phone"]');
+      const btn = form.querySelector('button[type="submit"]');
+      const success = form.querySelector('.form-status.success');
+      const error = form.querySelector('.form-status.error');
+
+      function maskPhone(value){
+        const digits = value.replace(/\D/g, '').replace(/^8/, '7');
+        const d = digits.replace(/^7/, '');
+        let res = '+7 (';
+        res += (d.slice(0,3) + '___').slice(0,3) + ') ';
+        res += (d.slice(3,6) + '___').slice(0,3) + '-';
+        res += (d.slice(6,8) + '__').slice(0,2) + '-';
+        res += (d.slice(8,10) + '__').slice(0,2);
+        return res;
+      }
+
+      function isPhoneComplete(value){
+        return value.replace(/\D/g, '').length === 11;
+      }
+
+      phoneInput.addEventListener('input', (e)=>{
+        e.target.value = maskPhone(e.target.value);
+      });
+      phoneInput.addEventListener('focus', (e)=>{
+        if (!e.target.value) e.target.value = '+7 (';
+      });
+
+      form.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        success.style.display = 'none';
+        error.style.display = 'none';
+
+        const isValid = form.checkValidity() && isPhoneComplete(phoneInput.value);
+        if (!isValid){
+          error.textContent = 'Проверьте корректность телефона и обязательных полей.';
+          error.style.display = 'block';
+          return;
+        }
+
+        btn.classList.add('loading');
+        btn.disabled = true;
+
+        setTimeout(()=>{
+          btn.classList.remove('loading');
+          btn.disabled = false;
+          success.style.display = 'block';
+          form.reset();
+          phoneInput.value = '';
+        }, 900);
+      });
+    })();
+  </script>
+
+  <!-- WORKFLOW -->
+  <section id="workflow" class="section-dark">
+    <div class="container">
+      <h2 class="section-title">Как мы работаем</h2>
+      <p class="section-subtitle">Берём на себя весь путь — от подбора формы до аккуратной доставки и гарантии качества.</p>
+
+      <div class="workflow-grid">
+        <article class="workflow-card">
+          <div class="workflow-top">
+            <div class="workflow-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M3 7h12v8H3z"/>
+                <path d="M15 9h4l2 2v4h-6"/>
+                <path d="M7 17a2 2 0 1 0 4 0"/>
+                <path d="M17 17a2 2 0 1 0 4 0"/>
+              </svg>
+            </div>
+            <h3>Доставка</h3>
+          </div>
+          <p>Отправляем по всей России транспортными компаниями на выбор клиента. Бережная упаковка, трек‑номер и контроль до получения.</p>
+        </article>
+
+        <article class="workflow-card">
+          <div class="workflow-top">
+            <div class="workflow-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 6h16v12H4z"/>
+                <path d="M4 9h16"/>
+                <path d="M7 14h4"/>
+              </svg>
+            </div>
+            <h3>Оплата</h3>
+          </div>
+          <p>Работаем с физическими и юридическими лицами: оплата онлайн, по счёту или картой. Предоставляем полный пакет документов.</p>
+        </article>
+
+        <article class="workflow-card">
+          <div class="workflow-top">
+            <div class="workflow-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6l7-3z"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+            </div>
+            <h3>Гарантии</h3>
+          </div>
+          <p>Гарантия 7 лет, сертификаты и контроль качества на каждом этапе. При необходимости — быстрый обмен или консультация.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- ABOUT -->
   <section id="about" class="section-light">
     <div class="container">
       <h2 class="section-title">О компании</h2>
       <p class="section-subtitle">
-        Более 15 лет продаём качественные искусственные литые ёлки и туи от ведущих отечественных производителей.
+        Более 15 лет создаём «вечнозелёные» композиции для дома и участка — с идеальной фактурой и безупречной сборкой.
       </p>
 
       <div class="about-grid">
         <div class="about-card">
           <h3 style="margin:0 0 10px; letter-spacing:-.02em;">История и подход</h3>
+          <p style="margin:0 0 10px; color:var(--muted);">
+            История нашей компании начинается с производства литых ёлок, где критичны реализм фактуры и аккуратная сборка. Этот стандарт перенесли на туи: тщательно подбираем оттенок хвои, проверяем плотность литья и симметрию кроны, чтобы растение выглядело максимально натурально.
+          </p>
+          <p style="margin:0 0 10px; color:var(--muted);">
+            Каждую модель собираем вручную, уделяя внимание прочности каркаса и надежности креплений — так туя сохраняет форму годами и спокойно «переживает» сезонные перепады температуры.
+          </p>
           <p style="margin:0; color:var(--muted);">
-            Мы начинали с литых ёлок, где критичен реализм каждой веточки, и перенесли этот стандарт на туи:
-            натуральная фактура хвои, прочные материалы, надёжная фурнитура и аккуратная сборка.
+            Мы не просто продаём изделия, а подбираем решение под конкретное пространство: дом, офис, входную группу или участок.
           </p>
         </div>
 
@@ -957,10 +1437,10 @@
         <div class="contact-card">
           <h3 style="margin:0 0 10px; letter-spacing:-.02em;">Связаться с нами</h3>
           <div class="kv">
-            <div>Телефон</div><div><a href="tel:+70000000000">+7 (000) 000-00-00</a></div>
-            <div>Email</div><div><a href="mailto:info@example.com">info@example.com</a></div>
+            <div>Телефон</div><div><a href="tel:+79219999999">+7(921)9999999</a></div>
+            <div>Email</div><div><a href="mailto:info@tuya.com">info@tuya.com</a></div>
             <div>Часы работы</div><div>Пн–Сб: 10:00–19:00 · Вс: выходной</div>
-            <div>Адрес</div><div>г. Москва, ул. Примерная, 10 (шоурум/пункт выдачи)</div>
+            <div>Адрес</div><div>г. Санкт-Петербург, Дворцовая площадь, 1 (шоурум/пункт выдачи)</div>
           </div>
 
           <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:16px;">
@@ -973,13 +1453,43 @@
           <iframe
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
-            src="https://www.google.com/maps?q=Москва%20ул.%20Тверская%201&output=embed"
+            src="https://www.google.com/maps?q=Дворцовая%20площадь%201%20Санкт-Петербург&z=15&output=embed"
             title="Карта расположения">
           </iframe>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- PRODUCT MODAL -->
+  <div class="modal" id="productModal" aria-hidden="true">
+    <div class="modal-card">
+      <button class="modal-close" type="button" aria-label="Закрыть">✕</button>
+      <div class="modal-media">
+        <img id="modalImage" src="" alt="" />
+      </div>
+      <div class="modal-body">
+        <h3 class="modal-title" id="modalTitle">Туя</h3>
+
+        <p>Для расчёта стоимости выберите высоту туи.</p>
+
+        <div class="calc">
+          <b>Калькулятор стоимости</b>
+          <div class="calc-row">
+            <select id="calcHeight"></select>
+            <select id="calcDelivery">
+              <option value="0">Самовывоз — 0 ₽</option>
+              <option value="900">Курьер по городу — 900 ₽</option>
+              <option value="1800">Доставка ТК — 1 800 ₽</option>
+            </select>
+          </div>
+          <input type="text" id="calcCity" placeholder="Город доставки" autocomplete="address-level2" />
+          <div>Итог: <span class="calc-total" id="calcTotal">0 ₽</span></div>
+          <button class="btn btn-accent" type="button">Заказать</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </main>
 
@@ -1003,6 +1513,73 @@
   document.querySelectorAll('.nav-links a').forEach(a => {
     a.addEventListener('click', () => { toggle.checked = false; });
   });
+</script>
+
+<script>
+  (function(){
+    const modal = document.getElementById('productModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalImage = document.getElementById('modalImage');
+    const calcHeight = document.getElementById('calcHeight');
+    const calcDelivery = document.getElementById('calcDelivery');
+    const calcTotal = document.getElementById('calcTotal');
+    const calcCity = document.getElementById('calcCity');
+    const closeBtn = modal.querySelector('.modal-close');
+
+    let priceMap = {};
+
+    function updateTotal(){
+      const heightKey = calcHeight.value;
+      const base = priceMap[heightKey] || 0;
+      const delivery = parseInt(calcDelivery.value || '0', 10);
+      const total = Math.round(base + delivery);
+      calcTotal.textContent = total.toLocaleString('ru-RU') + ' ₽';
+    }
+
+    function renderHeights(list){
+      calcHeight.innerHTML = '';
+      list.forEach(h => {
+        const opt = document.createElement('option');
+        opt.value = String(h);
+        opt.textContent = h + ' см';
+        calcHeight.appendChild(opt);
+      });
+    }
+
+    document.querySelectorAll('.open-modal').forEach(btn => {
+      btn.addEventListener('click', (e)=>{
+        e.preventDefault();
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        modalTitle.textContent = btn.dataset.title || 'Туя';
+        modalImage.src = btn.dataset.image || '';
+        modalImage.alt = btn.dataset.title || 'Туя';
+        const prices = btn.dataset.prices || '';
+        priceMap = prices.split(',').reduce((acc, item)=>{
+          const [h, p] = item.split(':').map(v => v.trim());
+          if (h && p) acc[h] = parseInt(p, 10);
+          return acc;
+        }, {});
+        const heights = Object.keys(priceMap).map(h => parseInt(h, 10)).sort((a,b)=>a-b);
+        renderHeights(heights.length ? heights : [80,120,160]);
+        updateTotal();
+      });
+    });
+
+    [calcHeight, calcDelivery, calcCity].forEach(el => {
+      el.addEventListener('change', updateTotal);
+      el.addEventListener('input', updateTotal);
+    });
+
+    function close(){
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+    }
+
+    closeBtn.addEventListener('click', close);
+    modal.addEventListener('click', (e)=>{ if (e.target === modal) close(); });
+    document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') close(); });
+  })();
 </script>
 
 </body>
